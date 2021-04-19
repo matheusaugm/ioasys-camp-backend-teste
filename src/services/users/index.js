@@ -1,5 +1,4 @@
-const { list } = require("./list.service");
+const create = require('./create');
+const get = require('./get');
 
-module.exports = {
-  list,
-};
+module.exports = { create, get };
