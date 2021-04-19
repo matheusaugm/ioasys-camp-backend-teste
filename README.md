@@ -1,39 +1,76 @@
-# camp-21
+# Sobre
 
-Camp's folder structure
+Estes documento README tem como objetivo fornecer as informações necessárias para realização do projeto de avaliação de candidatos.
 
-# Observações
+# 🏗 O que fazer?
 
-- No arquivo .env, os valores das variáveis precisam ser de acordo com as que você possui no seu ambiante, o arquivo .env.example é so um modelo de quais variáveis são necessárias para o projeto.
+- Você deve realizar um fork deste repositório e, ao finalizar, enviar o link do seu repositório para a nossa equipe. Lembre-se, NÃO é necessário criar um Pull Request para isso, nós iremos avaliar e retornar por email o resultado do seu teste.
 
-# Sequelize
+# 🚨 Requisitos
 
-- O Sequelize é o ORM que utilizamos nesse projeto, ele nos ajuda facilitando a comunicação entre nossa aplicação e o banco de dados. Ele possui uma documentação bem completa que pode ser consultada no link abaixo.
+- A API deverá ser construída em **NodeJS** ou **Rails**
+- Implementar autenticação e deverá seguir o padrão **JWT**, lembrando que o token a ser recebido deverá ser no formato **Bearer**
+- Caso seja desenvolvida em NodeJS o seu projeto terá que ser implementado em **ExpressJS** ou **SailsJS**
+- Para a comunicação com o banco de dados utilize algum **ORM**/**ODM**
+- Bancos relacionais permitidos:
+  - MySQL
+  - MariaDB
+  - Postgre
+- Bancos não relacionais permitidos:
+  - MongoDB
+- Sua API deverá seguir os padrões Rest na construção das rotas e retornos
+- Sua API deverá conter a collection/variáveis do postman ou algum endpoint da documentação em openapi para a realização do teste
+- É desejável que o teste esteja na liguagem  **JavaScript** buscando avaliar o entendimento completo da linguagem e não de estruturas ou dependências que abstraiam determinadas definições não alheias ao ECMAScript. No entanto, testes realizados em **TypeScript** também serão aceitos.
 
-- [Documentação](https://sequelize.org/master/)
+# 🕵🏻‍♂️ Itens a serem avaliados
 
-- Lembrete: Para o Sequelize funcionar, você já precisa ter criado o banco que será utilizado, e depois só passar o nome desse banco no arquivo .env, a sua aplicação também vai precisar ter a lib do banco que você está utilizando, é possível ver um exemplo neste [link](https://sequelize.org/master/manual/getting-started.html) da documentação.
+- Estrutura do Projeto
+- Segurança da API, como autenticação, senhas salvas no banco, SQL Injection e outros
+- Boas práticas da Linguagem/Framework
+- Seu projeto deverá seguir tudo o que foi exigido na seção [O que desenvolver?](##--o-que-desenvolver)
+- Migrations para a criação das tabelas do banco relacional
 
-## Models
+# 🎁 Extra
 
-- Quando se cria um model pelo sequelize, ele automaticamente cria um arquivo de migration de acordo com os dados que você informou, por exemplo, criando o model de Usuario, com as colunas `name`, `email` e `password`, basta rodar o comando `npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string`.
+Esses itens não são obrigatórios, porém desejados.
 
-## Migrations
+- Testes unitários
+- Linter
+- Code Formater
 
-- Caso seja necessesário criar uma migration por fora, sem a necessidade de criar uma model, basta rodar o comando `npx sequelize-cli migration:generate --name create-table-name` e ele cria o arquivo dentro da pasta especificada na configuração no arquivo `.sequelizerc`
+**Obs.: Lembrando que o uso de algum linter ou code formater irá depender da linguagem que sua API for criada**
 
-- Para executar as migrations, bata rodar o comando no terminal `npx sequelize-cli db:migrate`.
+# 🖥 O que desenvolver?
 
-## Seeder
+Você deverá criar uma API que o site [IMDb](https://www.imdb.com/) irá consultar para exibir seu conteúdo, sua API deve conter as seguintes features:
 
-- O seeder são dados que precisamos criar no banco que vão ser necessários para o funcionamento, por exemplo, criar o primeiro usuário administrador no banco, para gerar um seed, basta rodar o comando `npx sequelize-cli seed:generate --name create-admin-user`.
+- Admin
 
-- Para executar o seed, no terminal, rode o comando `npx sequelize-cli db:seed:all` que ele vai executar todos os seeds que ainda não foram rodados.
+  - Cadastro
+  - Edição
+  - Exclusão lógica (Desativação)
 
-## Associações
+- Usuário
 
-- É possível fazer as associações entre as tabelas utilizando o sequelize, é preciso fazer uma configuração nas migrations, utilizando `references`, e nos models utilizando `belongs`, `hasMany` e `hasOne`. Neste [link](https://medium.com/@andrewoons/how-to-define-sequelize-associations-using-migrations-de4333bf75a7) tem um artigo que explica como que funciona essas associações e o que é necessario fazer para elas funcionarem. Em caso de mais duvidas, na documentação do [Sequelize](https://sequelize.org/master/) tem explicações mais detalhadas de como funciona.
+  - Cadastro
+  - Edição
+  - Exclusão lógica (Desativação)
 
-# Postman
+- Filmes
 
-- Este é o link da collection que criei no postman com as rotas de login e listagem de usuários, para utiliza-la basta abrir o postman e importar via link e colocar o seguinte link `https://www.getpostman.com/collections/baa8ef10267688f8fa9e`.
+  - Cadastro (Somente um usuário administrador poderá realizar esse cadastro)
+  - Voto (A contagem dos votos será feita por usuário de 0-4 que indica quanto o usuário gostou do filme)
+  - Listagem (deverá ter filtro por diretor, nome, gênero e/ou atores)
+  - Detalhe do filme trazendo todas as informações sobre o filme, inclusive a média dos votos
+
+**Obs.: Apenas os usuários poderão votar nos filmes e a API deverá validar quem é o usuário que está acessando, ou seja, se é admin ou não**
+
+# 🔗 Links
+
+- Documentação JWT https://jwt.io/
+- Frameworks NodeJS:
+
+  1. https://expressjs.com/pt-br/
+  2. https://sailsjs.com/
+
+- Guideline rails http://guides.rubyonrails.org/index.html
